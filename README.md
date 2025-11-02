@@ -78,16 +78,27 @@ Nếu thấy:
  - enable wsl: cài đặt docker desktop
    tìm đường dẫn này để tải desktop Download for Windows – AMD64
  https://www.docker.com/products/docker-desktop/
+ sau khi cài đặt destop thì nó có giao diện này:
+ <img width="1255" height="962" alt="{FF05BC6C-8D57-4B84-A2E4-D32C8B3D0CA6}" src="https://github.com/user-attachments/assets/217bfae6-561c-4baa-909c-dd83ff85e903" />
+cho thấy Docker Desktop của bạn đã bật WSL integration với Ubuntu-22.04, và Engine đang chạy 
+2. Cài đặt Docker (nếu dùng docker desktop trên windows thì nó có ngay)
+   → Docker Desktop đã hoạt động hoàn toàn.
+ - enable wsl: cài đặt docker desktop
+   tìm đường dẫn này để tải desktop Download for Windows – AMD64
+ https://www.docker.com/products/docker-desktop/
  <img width="1255" height="962" alt="{FF05BC6C-8D57-4B84-A2E4-D32C8B3D0CA6}" src="https://github.com/user-attachments/assets/217bfae6-561c-4baa-909c-dd83ff85e903" />
  sau khi cài về cần đăng nhập và được giao diện như này
   sau khi cài được ubuntu thiwf nó
-![Uploading image.png…]()
+<img width="1580" height="888" alt="{E8937925-BBC3-4BA7-97F2-4D34CDC4276D}" src="https://github.com/user-attachments/assets/0e905cc8-c8c7-479b-ae7e-0aa315c41628" />
 nếu chưua cài ubuntu thì nó sẽ ko có trong dosktop 
-![Uploading {C76AE217-7240-40AA-AEDF-6F8FB5477930}.png…]()
 cho thấy Docker Desktop của bạn đã bật WSL integration với Ubuntu-22.04, và Engine đang chạy 
-2. Cài đặt Docker (nếu dùng docker desktop trên windows thì nó có ngay)
 3. Sử dụng 1 file docker-compose.yml để cài đặt các docker container sau: 
+<img width="976" height="223" alt="{44329A0C-2E8D-40C1-BF52-BDF111CBE456}" src="https://github.com/user-attachments/assets/e5433db9-a4fd-49c6-a218-280eab6570d7" />
+tạo file:
+<img width="1007" height="66" alt="{2E57125B-E9BC-454F-A024-C731BBB610C0}" src="https://github.com/user-attachments/assets/628fe1f3-6c46-452f-b5d7-9786ed9103d9" />
    mariadb (3306), phpmyadmin (8080), nodered/node-red (1880), influxdb (8086), grafana/grafana (3000), nginx (80,443)
+   <img width="583" height="799" alt="{D31C8637-13FC-4912-851F-AD901D04D7B0}" src="https://github.com/user-attachments/assets/5f7e9fc1-fffd-4d69-8f36-634223caae9d" />
+   <img width="962" height="386" alt="{82A25E31-19A6-4B2D-B4FE-1AFC4C90B113}" src="https://github.com/user-attachments/assets/f8850e52-f197-4d1c-b75d-8c3b16ad08d0" />
 4. Lập trình web frontend+backend:
  SV chọn 1 trong các web sau:
  4.1 Web thương mại điện tử
