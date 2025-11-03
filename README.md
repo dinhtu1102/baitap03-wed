@@ -113,7 +113,12 @@ tạo file:
     node-red-node-mysql
     ![Uploading {21ED8BF4-6549-4280-8CB5-C926E32F37AE}.png…]()
    Mở database iotdb
-   Tạo bảng users và sensors
+   ![Uploading {E4F37D7F-B2C8-4C87-A8F0-1A3B2AD095D3}.png…]()
+   Tạo bảng users
+   ![Uploading {19C2BDEB-8ABE-4C53-9AF8-F628DD4587E4}.png…]()
+   Tạo bảng sensors
+   ![Uploading {13C3E20F-A990-4464-AC3F-38D34EFBFE24}.png…]()
+   ## 
    CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100) NOT NULL UNIQUE,
