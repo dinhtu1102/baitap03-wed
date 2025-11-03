@@ -101,24 +101,36 @@ tạo file:
    mariadb (3306), phpmyadmin (8080), nodered/node-red (1880), influxdb (8086), grafana/grafana (3000), nginx (80,443)
    <img width="583" height="799" alt="{D31C8637-13FC-4912-851F-AD901D04D7B0}" src="https://github.com/user-attachments/assets/5f7e9fc1-fffd-4d69-8f36-634223caae9d" />
    <img width="962" height="386" alt="{82A25E31-19A6-4B2D-B4FE-1AFC4C90B113}" src="https://github.com/user-attachments/assets/f8850e52-f197-4d1c-b75d-8c3b16ad08d0" />
-
+ <img width="1099" height="278" alt="{009EE016-5F8A-41AE-ADA7-7BB9430F676F}" src="https://github.com/user-attachments/assets/c589c348-1a93-4126-acb9-ca87475fe7ff" />
 4. Lập trình web frontend+backend:
  SV chọn 1 trong các web sau:
- 4.1 Web thương mại điện tử
- - Tạo web dạng Single Page Application (SPA), chỉ gồm 1 file index.html, toàn bộ giao diện do javascript sinh động.
- - Có tính năng login, lưu phiên đăng nhập vào cookie và session
-   Thông tin login lưu trong cơ sở dữ liệu của mariadb, được dev quản trị bằng phpmyadmin, yêu cầu sử dụng mã hoá khi gửi login.
-   Chỉ cần login 1 lần, bao giờ logout thì mới phải login lại.
- - Có tính năng liệt kê các sản phẩm bán chạy ra trang chủ
- - Có tính năng liệt kê các nhóm sản phẩm
- - Có tính năng liệt kê sản phẩm theo nhóm
- - Có tính năng tìm kiếm sản phẩm
- - Có tính năng chọn sản phẩm (đưa sản phẩm vào giỏ hàng, thay đổi số lượng sản phẩm trong giỏ, cập nhật tổng tiền)
- - Có tính năng đặt hàng, nhập thông tin giao hàng => được 1 đơn hàng.
- - Có tính năng dành cho admin: Thống kê xem có bao nhiêu đơn hàng, call để xác nhận và cập nhật thông tin đơn hàng. chuyển cho bộ phận đóng gói, gửi bưu điện, cập nhật mã COD, tình trạng giao hàng, huỷ hàng,...
- - Có tính năng dành cho admin: biểu đồ thống kê số lượng mặt hàng bán được trong từng ngày. (sử dụng grafana)
- - backend: sử dụng nodered xử lý request gửi lên từ javascript, phản hồi về json.
  4.2 Web IOT: Giám sát dữ liệu IOT.
+ Tạo bảng MariaDB (qua phpMyAdmin hoặc CLI)
+   ![Uploading {69A6D222-05E1-48B5-A41D-247AFCE7B44C}.png…]()
+ Node-RED — flow & API (các bước và function code)
+    Menu → Manage Palette → Install:
+    ![Uploading {21668756-B970-4F28-880F-8C4B48759375}.png…]()
+    node-red-node-mysql
+    ![Uploading {21ED8BF4-6549-4280-8CB5-C926E32F37AE}.png…]()
+   Mở database iotdb
+   Tạo bảng users và sensors
+   CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) NOT NULL UNIQUE,
+  password_hash CHAR(64) NOT NULL, -- SHA-256 hex
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS sensors (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  sensor_key VARCHAR(100) UNIQUE, -- ví dụ 'temp_1'
+  sensor_name VARCHAR(100),
+  latest_value DOUBLE,
+  updated_at DATETIME
+);
+![Uploading {3BD6F745-C52E-4082-ADA3-C7C3CB22729A}.png…]()
+
+node-red-contrib-influxdb (hoặc node-red-node-influxdb tùy version)
  - Tạo web dạng Single Page Application (SPA), chỉ gồm 1 file index.html, toàn bộ giao diện do javascript sinh động.
  - Có tính năng login, lưu phiên đăng nhập vào cookie và session
    Thông tin login lưu trong cơ sở dữ liệu của mariadb, được dev quản trị bằng phpmyadmin, yêu cầu sử dụng mã hoá khi gửi login.
