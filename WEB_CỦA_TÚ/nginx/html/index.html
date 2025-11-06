@@ -1,0 +1,190 @@
+// ...existing code...
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>IoT Dashboard Realtime</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#06b6d4;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.03);
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:"Inter",Arial,sans-serif;background:linear-gradient(180deg,#071020 0%, #0f1724 100%);color:#e6eef8}
+    .container{max-width:1280px;margin:28px auto;display:grid;grid-template-columns:1fr;gap:18px;padding:18px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#04151a}
+    h1{margin:0;font-size:18px}
+    .subtitle{color:var(--muted);font-size:13px;margin-top:3px}
+
+    .card{
+      background: linear-gradient(180deg,var(--card), rgba(11,18,32,0.6));
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 40px rgba(2,6,23,0.6);
+      backdrop-filter: blur(6px);
+    }
+
+    .top-row{display:flex;gap:18px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .controls{display:flex;gap:10px;align-items:center}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-size:13px;border:1px solid rgba(255,255,255,0.02)}
+
+    /* Chart area made large and clear */
+    .chart-card{display:flex;flex-direction:column;gap:12px}
+    .chart-wrap{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:16px;border-radius:10px;height:640px;min-height:420px;
+    }
+    canvas{width:100% !important;height:100% !important;display:block}
+
+    /* legend & stats row */
+    .stats{display:flex;gap:12px;flex-wrap:wrap}
+    .stat{background:rgba(255,255,255,0.02);padding:10px;border-radius:8px;font-size:14px;color:var(--muted)}
+    .stat strong{color:#fff;margin-left:8px}
+
+    /* small screens */
+    @media (max-width:920px){
+      .chart-wrap{height:420px}
+      header{flex-direction:column;align-items:flex-start;gap:8px}
+    }
+
+    /* accessibility focus */
+    button:focus, a:focus, input:focus {outline:2px solid rgba(6,182,212,0.18);outline-offset:2px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">IoT</div>
+        <div>
+          <h1>IoT Dashboard Realtime</h1>
+          <div class="subtitle">Giám sát cảm biến — cập nhật liên tục</div>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="chip" id="statusChip">Kết nối: chưa</div>
+        <div class="chip" id="lastSeen">Lần lấy: --</div>
+      </div>
+    </header>
+
+    <div class="card chart-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="display:flex;flex-direction:column">
+          <strong style="font-size:16px">Biểu đồ cảm biến</strong>
+          <span style="color:var(--muted);font-size:13px">Nhiệt độ — Độ ẩm — Ánh sáng</span>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button id="refreshBtn" style="background:var(--accent);border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600;color:#04151a">Làm mới</button>
+        </div>
+      </div>
+
+      <div class="chart-wrap card" role="region" aria-label="Biểu đồ cảm biến thời gian thực">
+        <canvas id="sensorChart" aria-label="Biểu đồ cảm biến" role="img"></canvas>
+      </div>
+
+      <div class="stats">
+        <div class="stat">Nhiệt độ: <strong id="lastTemp">-- °C</strong></div>
+        <div class="stat">Độ ẩm: <strong id="lastHum">-- %</strong></div>
+        <div class="stat">Ánh sáng: <strong id="lastLight">--</strong></div>
+      </div>
+    </div>
+  </div>
+
+<script>
+let chart;
+let fetchInterval;
+
+function initChart() {
+  const ctx = document.getElementById('sensorChart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [],
+      datasets: [
+        { label: 'Temperature (°C)', data: [], borderColor: '#ff8a80', backgroundColor: 'rgba(255,138,128,0.08)', tension: 0.25, pointRadius: 3, borderWidth: 3, fill: true },
+        { label: 'Humidity (%)', data: [], borderColor: '#90caf9', backgroundColor: 'rgba(144,202,249,0.06)', tension: 0.25, pointRadius: 3, borderWidth: 3, fill: true },
+        { label: 'Light (lux)', data: [], borderColor: '#b9f6ca', backgroundColor: 'rgba(185,246,202,0.05)', tension: 0.25, pointRadius: 3, borderWidth: 3, fill: true }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      plugins: {
+        legend: { position: 'top', labels: { font: { size: 13 }, color: '#d6eef9' } },
+        tooltip: { mode: 'index', intersect: false, bodyFont: { size: 13 }, titleFont: { size: 13 } }
+      },
+      interaction: { mode: 'nearest', axis: 'x', intersect: false },
+      scales: {
+        x: {
+          display: true,
+          title: { display: true, text: 'Thời gian', color: '#bcd6ea', font: { size: 13 } },
+          ticks: { color: '#bcd6ea', maxRotation: 0, autoSkip: true, maxTicksLimit: 12 }
+        },
+        y: {
+          display: true,
+          title: { display: true, text: 'Giá trị', color: '#bcd6ea', font: { size: 13 } },
+          ticks: { color: '#bcd6ea' },
+          grace: '10%'
+        }
+      }
+    }
+  });
+}
+
+async function fetchData() {
+  try {
+    const res = await fetch('/api/sensors');
+    const data = await res.json();
+
+    if (!chart) return;
+
+    chart.data.labels = data.labels || [];
+    chart.data.datasets[0].data = data.temperature || [];
+    chart.data.datasets[1].data = data.humidity || [];
+    chart.data.datasets[2].data = data.light || [];
+    chart.update();
+
+    document.getElementById('statusChip').textContent = 'Kết nối: OK';
+    const now = new Date();
+    document.getElementById('lastSeen').textContent = 'Lần lấy: ' + now.toLocaleTimeString();
+
+    if (Array.isArray(data.temperature) && data.temperature.length) {
+      document.getElementById('lastTemp').textContent = data.temperature[data.temperature.length - 1] + ' °C';
+    }
+    if (Array.isArray(data.humidity) && data.humidity.length) {
+      document.getElementById('lastHum').textContent = data.humidity[data.humidity.length - 1] + ' %';
+    }
+    if (Array.isArray(data.light) && data.light.length) {
+      document.getElementById('lastLight').textContent = data.light[data.light.length - 1];
+    }
+  } catch (err) {
+    console.error('Fetch sensor data error:', err);
+    document.getElementById('statusChip').textContent = 'Kết nối: lỗi';
+  }
+}
+
+// initialize
+initChart();
+fetchData();
+fetchInterval = setInterval(fetchData, 5000);
+
+// UI controls
+document.getElementById('refreshBtn').addEventListener('click', () => { fetchData(); });
+
+window.addEventListener('beforeunload', () => {
+  if (fetchInterval) clearInterval(fetchInterval);
+});
+</script>
+</body>
+</html>
+// ...existing code...

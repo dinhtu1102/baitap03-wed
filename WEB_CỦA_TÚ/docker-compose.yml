@@ -1,0 +1,182 @@
+services:
+
+  # 1. Cơ sở dữ liệu MariaDB
+
+  mariadb:
+
+    image: mariadb:latest
+
+    container_name: mariadb
+
+    restart: unless-stopped
+
+    environment:
+
+      MYSQL_ROOT_PASSWORD: 123
+
+      MYSQL_DATABASE: tu
+
+      MYSQL_USER: admin
+
+      MYSQL_PASSWORD: 12345
+
+    ports:
+
+      - "3307:3306"
+
+    volumes:
+
+      - mariadb-data:/var/lib/mysql
+
+    networks:
+
+      - my-app-network
+
+
+
+  # 2. Giao diện quản lý DB (PhpMyAdmin)
+
+  phpmyadmin:
+
+    image: phpmyadmin/phpmyadmin:latest
+
+    container_name: phpmyadmin
+
+    restart: unless-stopped
+
+    depends_on:
+
+      - mariadb
+
+    environment:
+
+      PMA_HOST: mariadb
+
+      MYSQL_ROOT_PASSWORD: 123
+
+    ports:
+
+      - "8080:80"
+
+    networks:
+
+      - my-app-network
+
+
+
+  # 3. Node-RED (Backend)
+
+  nodered_service:
+
+    image: nodered/node-red:latest
+
+    container_name: nodered_service
+
+    restart: unless-stopped
+
+    ports:
+
+      - "1880:1880"
+
+    volumes:
+
+      - nodered-data:/data
+
+    # KHỐI ENVIRONMENT ĐÃ BỊ XÓA (Để Node-RED chạy ở gốc /)
+
+    networks:
+
+      - my-app-network
+
+
+
+  # 4. Cơ sở dữ liệu Time-series (InfluxDB)
+
+  influxdb_service:
+
+    image: influxdb:latest
+
+    container_name: influxdb_service
+
+    restart: unless-stopped
+
+    ports:
+
+      - "8087:8086"
+
+    volumes:
+
+      - influxdb-data:/var/lib/influxdb2
+
+    networks:
+
+      - my-app-network
+
+
+
+  # 5. Giao diện trực quan hóa (Grafana)
+  grafana_service:
+    image: grafana/grafana:latest
+    container_name: grafana_service
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      # Sửa tên miền thành nguyendinhtu.com
+      GF_SERVER_ROOT_URL: http://nguyendinhtu.com:8081/grafana 
+      GF_SERVER_SERVE_FROM_SUB_PATH: "true" # Dòng này rất quan trọng
+    volumes:
+      - grafana-data:/var/lib/grafana
+    networks:
+      - my-app-network
+
+
+
+  # 6. Web Server / Reverse Proxy (Nginx)
+
+  nginx_service:
+
+    image: nginx:latest
+
+    container_name: nginx_service
+
+    restart: unless-stopped
+
+    ports:
+
+      - "8081:80"
+
+      - "8443:443"
+
+    volumes:
+
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/html:/usr/share/nginx/html:ro
+
+    networks:
+
+      - my-app-network
+
+
+
+# Định nghĩa các "volumes" để lưu trữ dữ liệu
+
+volumes:
+
+  mariadb-data:
+
+  nodered-data:
+
+  influxdb-data:
+
+  grafana-data:
+
+
+
+# Định nghĩa "network" để các container nói chuyện với nhau
+
+networks:
+
+  my-app-network:
+
+    driver: bridge
