@@ -152,7 +152,7 @@ Thì cần phải cài :
  
    Bảng lưu dữ liệu mới nhất cho sơ đồ 
 
-     <img width="1913" height="738" alt="image" src="https://github.com/user-attachments/assets/abc11e03-464f-4352-9d00-893201253a65" />
+  <img width="1913" height="738" alt="image" src="https://github.com/user-attachments/assets/abc11e03-464f-4352-9d00-893201253a65" />
 
   - kết quả đạt dược
   
