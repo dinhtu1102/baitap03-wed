@@ -212,7 +212,7 @@ Thì cần phải cài :
  - Cấu hình nginx để http://fullname.com/grafana truy cập vào grafana qua cổng 80, (dù grafana đang chạy ở port 3000)
  - http://nguyendinhtu.com:3001/grafana/login
  
-   <img width="1920" height="1080" alt="{83B7A4DB-AE15-4EDA-B7CB-5477DE86765F}" src="https://github.com/user-attachments/assets/1f14e081-74f7-4745-8923-b984c15b3f92" />
+   <img width="1831" height="1077" alt="{FBB70C25-A636-4517-90C5-CDCF001EFE74}" src="https://github.com/user-attachments/assets/02a78dc6-4eea-413d-bfe4-69299c41c84e" />
 
 Yêu cầu sinh viên lưu code trên github
 có file readme.md có hình ảnh + text: ghi lại nhật ký quá trình làm bài.
