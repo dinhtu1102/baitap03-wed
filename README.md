@@ -28,23 +28,37 @@ Yêu cầu     : LẬP TRÌNH ỨNG DỤNG WEB trên nền linux
  → Docker Desktop đã hoạt động hoàn toàn.
  - enable wsl: cài đặt docker desktop
  - Tìm đường dẫn này để tải desktop Download for Windows – AMD64
+   
  https://www.docker.com/products/docker-desktop/
+ 
  <img width="1255" height="962" alt="{FF05BC6C-8D57-4B84-A2E4-D32C8B3D0CA6}" src="https://github.com/user-attachments/assets/217bfae6-561c-4baa-909c-dd83ff85e903" />
+
  - Sau khi cài về cần đăng nhập và được giao diện như này
+  
  - Sau khi cài được ubuntu thiwf nó
+
 <img width="1580" height="888" alt="{E8937925-BBC3-4BA7-97F2-4D34CDC4276D}" src="https://github.com/user-attachments/assets/0e905cc8-c8c7-479b-ae7e-0aa315c41628" />
+
  - Nếu chưua cài ubuntu thì nó sẽ ko có trong dosktop 
  => Cho thấy Docker Desktop của bạn đã bật WSL integration với Ubuntu-22.04, và Engine đang chạy 
 3. Sử dụng 1 file docker-compose.yml để cài đặt các docker container sau: 
    mariadb (3306), phpmyadmin (8080), nodered/node-red (1880), influxdb (8086), grafana/grafana (3000), nginx (80,443)
  - Tạo folder với cấu trúc 
+ 
    <img width="376" height="279" alt="image" src="https://github.com/user-attachments/assets/8ec11520-2703-465f-840b-770d99b51ded" />
+ 
  - Bắt đầu cài đặt các docker container:
+ 
  <img width="1099" height="278" alt="image" src="https://github.com/user-attachments/assets/57dbb2fe-f6ff-439d-ab3b-590c44c77a42" />
+
  - Terminal chạy và cài đặt containers
+ 
    <img width="1137" height="922" alt="image" src="https://github.com/user-attachments/assets/aa282e49-9b2b-4d10-a94e-872224964867" />
+
  => Kết quả trả về dockers
+ 
    <img width="1597" height="926" alt="image" src="https://github.com/user-attachments/assets/2f4d0f7f-2ec1-48c7-9602-47b37c7cea99" />
+
 4. Lập trình web frontend+backend:
  SV chọn 1 trong các web sau:
  4.2 Web IOT: Giám sát dữ liệu IOT.
