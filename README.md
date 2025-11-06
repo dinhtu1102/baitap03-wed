@@ -20,9 +20,6 @@ Yêu cầu     : LẬP TRÌNH ỨNG DỤNG WEB trên nền linux
 
 # 1. Cài đặt môi trường linux: SV chọn 1 trong các phương án
 
- - enable wsl: cài đặt docker desktop
- 
- - enable wsl: cài đặt ubuntu
 
 Mới đầu kích hoạt WSL và cài Ubuntu bằng lệnh này trong CMD :
 
