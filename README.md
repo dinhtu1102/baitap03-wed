@@ -200,7 +200,8 @@ Thì cần phải cài :
    <img width="1920" height="1080" alt="{6B7B03A3-58A4-4BDC-A4B1-5BAA24017D49}" src="https://github.com/user-attachments/assets/33b8c53d-9f37-4fba-be65-5fc3252153fb" />
 
  - Cấu hình nginx để http://fullname.com/grafana truy cập vào grafana qua cổng 80, (dù grafana đang chạy ở port 3000)
-
+ - http://nguyendinhtu.com:3001/grafana/login
+ 
    <img width="1920" height="1080" alt="{83B7A4DB-AE15-4EDA-B7CB-5477DE86765F}" src="https://github.com/user-attachments/assets/1f14e081-74f7-4745-8923-b984c15b3f92" />
 
 Yêu cầu sinh viên lưu code trên github
