@@ -8,7 +8,7 @@ Ngày giao   : 2025-10-24 13:50
 Hạn nộp     : 2025-11-05 00:00
 --------------------------------------------------
 Yêu cầu     : LẬP TRÌNH ỨNG DỤNG WEB trên nền linux
-1. Cài đặt môi trường linux: SV chọn 1 trong các phương án
+# 1. Cài đặt môi trường linux: SV chọn 1 trong các phương án
  - enable wsl: cài đặt docker desktop
  - enable wsl: cài đặt ubuntu
 Mới đầu kích hoạt WSL và cài Ubuntu bằng lệnh này trong CMD :
@@ -19,27 +19,27 @@ Kiểm tra trong Command Prompt
      
       wsl -l -v
  
-  Nếu không thấy dòng như:
+Nếu không thấy dòng như:
     
       Ubuntu-22.04    Running    2
   
-  Thì cần phải cài :
+Thì cần phải cài :
     
       wsl --install -d Ubuntu-22.04
  
-  Kiểm tra Docker hoạt động trong WSL
+ Kiểm tra Docker hoạt động trong WSL
      
       docker --version
      
       docker run hello-world
 
-  Nếu thấy:
+ Nếu thấy:
     
       Hello from Docker!
     
 → Docker Desktop đã hoạt động hoàn toàn.
 
-2. Cài đặt Docker (nếu dùng docker desktop trên windows thì nó có ngay)
+# 2. Cài đặt Docker (nếu dùng docker desktop trên windows thì nó có ngay)
 
  → Docker Desktop đã hoạt động hoàn toàn.
 
@@ -61,7 +61,7 @@ Kiểm tra trong Command Prompt
  
  => Cho thấy Docker Desktop của bạn đã bật WSL integration với Ubuntu-22.04, và Engine đang chạy 
 
-3. Sử dụng 1 file docker-compose.yml để cài đặt các docker container sau: 
+# 3. Sử dụng 1 file docker-compose.yml để cài đặt các docker container sau: 
  
    mariadb (3306), phpmyadmin (8080), nodered/node-red (1880), influxdb (8086), grafana/grafana (3000), nginx (80,443)
  
@@ -81,7 +81,7 @@ Kiểm tra trong Command Prompt
  
    <img width="1597" height="926" alt="image" src="https://github.com/user-attachments/assets/2f4d0f7f-2ec1-48c7-9602-47b37c7cea99" />
 
-4. Lập trình web frontend+backend:
+# 4. Lập trình web frontend+backend:
 
  SV chọn 1 trong các web sau:
 
@@ -110,7 +110,7 @@ Kiểm tra trong Command Prompt
      
    - chọn database tu → chạy SQL:
    
-  - THÊM BẢNG USERS VÀO DATABASE tu
+   - THÊM BẢNG USERS VÀO DATABASE tu
   
    <img width="1863" height="750" alt="image" src="https://github.com/user-attachments/assets/d5b30ad5-7602-46e4-8399-4b1071a833ed" />
   
@@ -130,7 +130,7 @@ Kiểm tra trong Command Prompt
    
      <img width="925" height="267" alt="image" src="https://github.com/user-attachments/assets/79c6485a-31c1-47c4-8064-9a1b16d99704" />
  
-    - Đăng nhập nodered
+   - Đăng nhập nodered
 
    - Flow nodered login
    
@@ -144,7 +144,6 @@ Kiểm tra trong Command Prompt
 
      <img width="1913" height="738" alt="image" src="https://github.com/user-attachments/assets/abc11e03-464f-4352-9d00-893201253a65" />
 
-     
   - kết quả đạt dược
   
      <img width="1917" height="324" alt="image" src="https://github.com/user-attachments/assets/9b2187d5-2420-4b74-ae7c-5ba26c952ba2" />
@@ -161,7 +160,7 @@ Kiểm tra trong Command Prompt
 
     <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4db558a1-df4c-4441-934c-67fc52d03d48" />
 
-  - ĐƯỜNG DẪN NODEPAD CẤU HÌNH NGHINX ĐỂ  CHẠY WEBSITE
+  - ĐƯỜNG DẪN NODEPAD CẤU HÌNH NGHINX ĐỂ CHẠY WEBSITE
 
     <img width="939" height="582" alt="image" src="https://github.com/user-attachments/assets/ce50cd60-33de-4c99-be10-2b4dfee11096" />
 
@@ -189,10 +188,20 @@ Kiểm tra trong Command Prompt
 
    <img width="1920" height="1080" alt="{811C52D6-C8AC-40E4-A0AC-A15C5A091B07}" src="https://github.com/user-attachments/assets/a07a5f32-da44-4807-96bd-b59f46c7ecb3" />
 
-5. Nginx làm web-server
+# 5. Nginx làm web-server
  - Cấu hình nginx để chạy được website qua url http://fullname.com  (thay fullname bằng chuỗi ko dấu viết liền tên của bạn)
+ - http://nguyendinhtu.com:8081/
+
+  <img width="1920" height="1080" alt="{F02D4115-E4CA-42DE-BAEE-07DB07EA1052}" src="https://github.com/user-attachments/assets/86f59b87-9aac-4ae0-8681-b5eaa1c2d40f" />
+
  - Cấu hình nginx để http://fullname.com/nodered truy cập vào nodered qua cổng 80, (dù nodered đang chạy ở port 1880)
+ - http://nguyendinhtu:1880/
+
+   <img width="1920" height="1080" alt="{6B7B03A3-58A4-4BDC-A4B1-5BAA24017D49}" src="https://github.com/user-attachments/assets/33b8c53d-9f37-4fba-be65-5fc3252153fb" />
+
  - Cấu hình nginx để http://fullname.com/grafana truy cập vào grafana qua cổng 80, (dù grafana đang chạy ở port 3000)
+
+   <img width="1920" height="1080" alt="{83B7A4DB-AE15-4EDA-B7CB-5477DE86765F}" src="https://github.com/user-attachments/assets/1f14e081-74f7-4745-8923-b984c15b3f92" />
 
 Yêu cầu sinh viên lưu code trên github
 có file readme.md có hình ảnh + text: ghi lại nhật ký quá trình làm bài.
