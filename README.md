@@ -1,16 +1,29 @@
 # Nguyễn Đình Tú k225480106067 lớp k58.ktp
+
 # baitap03-wed
-bai tap 03
-Bài tập 3   : môn Phát triển ứng dụng trên nền web
-Giảng viên  : Đỗ Duy Cốp
-Lớp học phần: 58KTPM
-Ngày giao   : 2025-10-24 13:50
-Hạn nộp     : 2025-11-06 23:59
+
+- bai tap 03
+
+- Bài tập 3   : môn Phát triển ứng dụng trên nền web
+
+- Giảng viên  : Đỗ Duy Cốp
+
+- Lớp học phần: 58KTP
+
+- Ngày giao   : 2025-10-24 13:50
+
+- Hạn nộp     : 2025-11-06 23:59
+
 --------------------------------------------------
+
 Yêu cầu     : LẬP TRÌNH ỨNG DỤNG WEB trên nền linux
+
 # 1. Cài đặt môi trường linux: SV chọn 1 trong các phương án
+
  - enable wsl: cài đặt docker desktop
+ 
  - enable wsl: cài đặt ubuntu
+
 Mới đầu kích hoạt WSL và cài Ubuntu bằng lệnh này trong CMD :
 
       wsl --install
