@@ -176,7 +176,7 @@ Thì cần phải cài :
 
   - cấu hình api cho bài toán
 
-    <img width="799" height="736" alt="image" src="https://github.com/user-attachments/assets/12e90cb8-f577-4846-b8e7-3c16f46d1488" />
+    <img width="1332" height="1026" alt="{B642DA0A-68CE-4A49-839F-36A0E630B303}" src="https://github.com/user-attachments/assets/49321c5f-1c78-44ee-bfaf-5b83a82ae6ea" />
 
   - SỬA SERVER NAME TRONG NGINX.CONF
 
