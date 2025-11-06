@@ -105,7 +105,9 @@ Kiểm tra trong Command Prompt
 
 # Bắt đầu tạo schema MariaDB (dùng phpMyAdmin)
    - Đăng nhập phpMyAdmin 
- 
+
+      <img width="1911" height="1080" alt="{B0B21261-13BD-4427-BE3E-B79594FC3E58}" src="https://github.com/user-attachments/assets/0ed2c01e-5a8a-4df2-8abb-59f15f33f8ff" />
+     
    - chọn database tu → chạy SQL:
    
   - THÊM BẢNG USERS VÀO DATABASE tu
@@ -128,7 +130,7 @@ Kiểm tra trong Command Prompt
    
      <img width="925" height="267" alt="image" src="https://github.com/user-attachments/assets/79c6485a-31c1-47c4-8064-9a1b16d99704" />
  
- - Đăng nhập nodered
+    - Đăng nhập nodered
 
    - Flow nodered login
    
@@ -138,7 +140,54 @@ Kiểm tra trong Command Prompt
 
       <img width="1864" height="967" alt="image" src="https://github.com/user-attachments/assets/d32a546e-e9bf-458d-8193-dd6a8370cb8c" />
  
+   Bảng lưu dữ liệu mới nhất cho sơ đồ 
 
+     <img width="1913" height="738" alt="image" src="https://github.com/user-attachments/assets/abc11e03-464f-4352-9d00-893201253a65" />
+
+     
+  - kết quả đạt dược
+  
+     <img width="1917" height="324" alt="image" src="https://github.com/user-attachments/assets/9b2187d5-2420-4b74-ae7c-5ba26c952ba2" />
+
+  - Biểu đồ giám sát iot
+
+    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/33c63cfd-5623-4e20-aad4-d5269aa3c054" />
+
+  - Nodered tổng kết
+
+    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2f1ff238-9c0b-4699-982a-274b7d81c62b" />
+
+  - Bảng lưu giá trị từ cảm biến
+
+    <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4db558a1-df4c-4441-934c-67fc52d03d48" />
+
+  - ĐƯỜNG DẪN NODEPAD CẤU HÌNH NGHINX ĐỂ  CHẠY WEBSITE
+
+    <img width="939" height="582" alt="image" src="https://github.com/user-attachments/assets/ce50cd60-33de-4c99-be10-2b4dfee11096" />
+
+  - cấu hình api cho bài toán
+
+    <img width="799" height="736" alt="image" src="https://github.com/user-attachments/assets/12e90cb8-f577-4846-b8e7-3c16f46d1488" />
+
+  - SỬA SERVER NAME TRONG NGINX.CONF
+
+    <img width="1151" height="407" alt="image" src="https://github.com/user-attachments/assets/b3b612b9-4ec7-4df7-92bc-704019569420" />
+
+  - Index.html
+
+    <img width="1920" height="1080" alt="{B3C9D06C-E62D-4BFC-AB09-76427E1D8240}" src="https://github.com/user-attachments/assets/b728afab-a744-43d2-813a-da47ba41609b" />
+
+  - Docker-compose.yml
+    
+    <img width="1920" height="1080" alt="{809A4732-3C81-4D80-828A-C21162061E8A}" src="https://github.com/user-attachments/assets/80ce7808-055f-49a5-b7e1-dbff751ebdf3" />
+    
+  - Nginx.conf
+
+   <img width="1920" height="1080" alt="{28FB696E-5D1C-4954-8EAF-29C1BA1ED855}" src="https://github.com/user-attachments/assets/0b02bc96-b862-4543-afbf-71cea23741a3" />
+
+=> kết quả cuối cùng đạt được
+
+   <img width="1920" height="1080" alt="{811C52D6-C8AC-40E4-A0AC-A15C5A091B07}" src="https://github.com/user-attachments/assets/a07a5f32-da44-4807-96bd-b59f46c7ecb3" />
 
 5. Nginx làm web-server
  - Cấu hình nginx để chạy được website qua url http://fullname.com  (thay fullname bằng chuỗi ko dấu viết liền tên của bạn)
@@ -157,60 +206,3 @@ CÁCH ĐÁNH GIÁ:
 6. Bài làm có dấu ấn, giải thích rõ ràng, hiểu vấn đề: 2đ
 
 
-4. Lập trình web frontend+backend:
- SV chọn 1 trong các web sau:
- 4.2 Web IOT: Giám sát dữ liệu IOT.
- Tạo bảng MariaDB (qua phpMyAdmin hoặc CLI)
-   ![Uploading {69A6D222-05E1-48B5-A41D-247AFCE7B44C}.png…]()
- Node-RED — flow & API (các bước và function code)
-    Menu → Manage Palette → Install:
-    ![Uploading {21668756-B970-4F28-880F-8C4B48759375}.png…]()
-    node-red-node-mysql
-    ![Uploading {21ED8BF4-6549-4280-8CB5-C926E32F37AE}.png…]()
-   Mở database iotdb
-   ![Uploading {E4F37D7F-B2C8-4C87-A8F0-1A3B2AD095D3}.png…]()
-   Tạo bảng users
-   ![Uploading {19C2BDEB-8ABE-4C53-9AF8-F628DD4587E4}.png…]()
-   Tạo bảng sensors
-   ![Uploading {13C3E20F-A990-4464-AC3F-38D34EFBFE24}.png…]()
-   ## 
-   CREATE TABLE IF NOT EXISTS users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(100) NOT NULL UNIQUE,
-  password_hash CHAR(64) NOT NULL, -- SHA-256 hex
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE IF NOT EXISTS sensors (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  sensor_key VARCHAR(100) UNIQUE, -- ví dụ 'temp_1'
-  sensor_name VARCHAR(100),
-  latest_value DOUBLE,
-  updated_at DATETIME
-);
-![Uploading {3BD6F745-C52E-4082-ADA3-C7C3CB22729A}.png…]()
-
-node-red-contrib-influxdb (hoặc node-red-node-influxdb tùy version)
- - Tạo web dạng Single Page Application (SPA), chỉ gồm 1 file index.html, toàn bộ giao diện do javascript sinh động.
- - Có tính năng login, lưu phiên đăng nhập vào cookie và session
-   Thông tin login lưu trong cơ sở dữ liệu của mariadb, được dev quản trị bằng phpmyadmin, yêu cầu sử dụng mã hoá khi gửi login.
-   Chỉ cần login 1 lần, bao giờ logout thì mới phải login lại.
- - hiển thị giá trị mới nhất của các thông số đang giám sát, khi click vào thì hiển thị đồ thị lịch sử quá trình thay đổi (gọi grafana iframe để hiển thị)
- - backend: Sử dụng nodered để đọc dữ liệu từ các cảm biến (có thể dùng api online để lấy dữ liệu theo giời gian thực), 
-   nodered sẽ lưu dữ liệu mới nhất (dạng update) vào cơ sở dữ liệu mariadb (sử dụng phpmyadmin để tạp table và quản trị lần đầu)
-   nodered sẽ lưu dữ liệu (insert) vào influxdb để lưu giá trị lịch sử, để cho grafana dùng để hiển thị biểu đồ.
-5. Nginx làm web-server
- - Cấu hình nginx để chạy được website qua url http://fullname.com  (thay fullname bằng chuỗi ko dấu viết liền tên của bạn)
- - Cấu hình nginx để http://fullname.com/nodered truy cập vào nodered qua cổng 80, (dù nodered đang chạy ở port 1880)
- - Cấu hình nginx để http://fullname.com/grafana truy cập vào grafana qua cổng 80, (dù grafana đang chạy ở port 3000)
-
-Yêu cầu sinh viên lưu code trên github
-có file readme.md có hình ảnh + text: ghi lại nhật ký quá trình làm bài.
-
-CÁCH ĐÁNH GIÁ:
-1. Cài đặt được môi trường: 1đ
-2. Cài đặt được các docker container với cấu hình phù hợp: 1đ
-3. Web chạy được, giao diện phù hợp, chạy trên web sever nginx: 2đ
-4. nodered api trả về json, test được: 2đ
-5. front-end có js gọi được api nodered, nhận về json, hiển thị được kết quả từ json này. 2đ
-6. Bài làm có dấu ấn, giải thích rõ ràng, hiểu vấn đề: 2đ
