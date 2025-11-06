@@ -11,22 +11,40 @@ Yêu cầu     : LẬP TRÌNH ỨNG DỤNG WEB trên nền linux
 1. Cài đặt môi trường linux: SV chọn 1 trong các phương án
  - enable wsl: cài đặt docker desktop
  - enable wsl: cài đặt ubuntu
-   Mới đầu kích hoạt WSL và cài Ubuntu bằng lệnh này trong CMD : wsl --install
-  Kiểm tra trong Command Prompt
+Mới đầu kích hoạt WSL và cài Ubuntu bằng lệnh này trong CMD :
+
+      wsl --install
+
+Kiểm tra trong Command Prompt
+     
       wsl -l -v
+ 
   Nếu không thấy dòng như:
+    
       Ubuntu-22.04    Running    2
-   Thì cần phải cài :
+  
+  Thì cần phải cài :
+    
       wsl --install -d Ubuntu-22.04
+ 
   Kiểm tra Docker hoạt động trong WSL
+     
       docker --version
+     
       docker run hello-world
+
   Nếu thấy:
-     Hello from Docker!
+    
+      Hello from Docker!
+    
 → Docker Desktop đã hoạt động hoàn toàn.
+
 2. Cài đặt Docker (nếu dùng docker desktop trên windows thì nó có ngay)
+
  → Docker Desktop đã hoạt động hoàn toàn.
+
  - enable wsl: cài đặt docker desktop
+ 
  - Tìm đường dẫn này để tải desktop Download for Windows – AMD64
    
  https://www.docker.com/products/docker-desktop/
@@ -40,9 +58,13 @@ Yêu cầu     : LẬP TRÌNH ỨNG DỤNG WEB trên nền linux
 <img width="1580" height="888" alt="{E8937925-BBC3-4BA7-97F2-4D34CDC4276D}" src="https://github.com/user-attachments/assets/0e905cc8-c8c7-479b-ae7e-0aa315c41628" />
 
  - Nếu chưua cài ubuntu thì nó sẽ ko có trong dosktop 
+ 
  => Cho thấy Docker Desktop của bạn đã bật WSL integration với Ubuntu-22.04, và Engine đang chạy 
+
 3. Sử dụng 1 file docker-compose.yml để cài đặt các docker container sau: 
+ 
    mariadb (3306), phpmyadmin (8080), nodered/node-red (1880), influxdb (8086), grafana/grafana (3000), nginx (80,443)
+ 
  - Tạo folder với cấu trúc 
  
    <img width="376" height="279" alt="image" src="https://github.com/user-attachments/assets/8ec11520-2703-465f-840b-770d99b51ded" />
@@ -60,39 +82,64 @@ Yêu cầu     : LẬP TRÌNH ỨNG DỤNG WEB trên nền linux
    <img width="1597" height="926" alt="image" src="https://github.com/user-attachments/assets/2f4d0f7f-2ec1-48c7-9602-47b37c7cea99" />
 
 4. Lập trình web frontend+backend:
+
  SV chọn 1 trong các web sau:
+
  4.2 Web IOT: Giám sát dữ liệu IOT.
+
  - Tạo web dạng Single Page Application (SPA), chỉ gồm 1 file index.html, toàn bộ giao diện do javascript sinh động.
- -  - Có tính năng login, lưu phiên đăng nhập vào cookie và session
+ 
+ - Có tính năng login, lưu phiên đăng nhập vào cookie và session
+
    Thông tin login lưu trong cơ sở dữ liệu của mariadb, được dev quản trị bằng phpmyadmin, yêu cầu sử dụng mã hoá khi gửi login.
+
    Chỉ cần login 1 lần, bao giờ logout thì mới phải login lại.
+
  - hiển thị giá trị mới nhất của các thông số đang giám sát, khi click vào thì hiển thị đồ thị lịch sử quá trình thay đổi (gọi grafana iframe để hiển thị)
+
  - backend: Sử dụng nodered để đọc dữ liệu từ các cảm biến (có thể dùng api online để lấy dữ liệu theo giời gian thực), 
+
    nodered sẽ lưu dữ liệu mới nhất (dạng update) vào cơ sở dữ liệu mariadb (sử dụng phpmyadmin để tạp table và quản trị lần đầu)
-   nodered sẽ lưu dữ liệu (insert) vào influxdb để lưu giá trị lịch sử, để cho grafana dùng để hiển thị biểu đồ.
+
+    nodered sẽ lưu dữ liệu (insert) vào influxdb để lưu giá trị lịch sử, để cho grafana dùng để hiển thị biểu đồ.
 
 # Bắt đầu tạo schema MariaDB (dùng phpMyAdmin)
    - Đăng nhập phpMyAdmin 
  
    - chọn database tu → chạy SQL:
    
-   - THÊM BẢNG USERS VÀO DATABASE tu
+  - THÊM BẢNG USERS VÀO DATABASE tu
+  
    <img width="1863" height="750" alt="image" src="https://github.com/user-attachments/assets/d5b30ad5-7602-46e4-8399-4b1071a833ed" />
+  
    - Kết quả trả về 
+  
   <img width="1867" height="363" alt="image" src="https://github.com/user-attachments/assets/857ae885-c50c-47c5-b7ef-de84247a0a9b" />
+  
    - Chèn thông tin vào bảng
-     <img width="1868" height="382" alt="image" src="https://github.com/user-attachments/assets/207479b2-d64f-47ca-81bf-141e5de09668" />
+
+      <img width="1868" height="382" alt="image" src="https://github.com/user-attachments/assets/207479b2-d64f-47ca-81bf-141e5de09668" />
+  
    - kết quả sau khi thực hiện
-     <img width="1865" height="351" alt="image" src="https://github.com/user-attachments/assets/43e9a14c-2c06-47e6-ba2c-8eed6df97059" />
+
+      <img width="1865" height="351" alt="image" src="https://github.com/user-attachments/assets/43e9a14c-2c06-47e6-ba2c-8eed6df97059" />
+   
    - Kiểm tra kết quả
+   
      <img width="925" height="267" alt="image" src="https://github.com/user-attachments/assets/79c6485a-31c1-47c4-8064-9a1b16d99704" />
+ 
  - Đăng nhập nodered
 
    - Flow nodered login
+   
      <img width="1859" height="925" alt="image" src="https://github.com/user-attachments/assets/66de21d2-ef53-48c5-86ab-1fec9b66ea25" />
+
    - From đăng nhập
-     <img width="1864" height="967" alt="image" src="https://github.com/user-attachments/assets/d32a546e-e9bf-458d-8193-dd6a8370cb8c" />
-   - 
+
+      <img width="1864" height="967" alt="image" src="https://github.com/user-attachments/assets/d32a546e-e9bf-458d-8193-dd6a8370cb8c" />
+ 
+
+
 5. Nginx làm web-server
  - Cấu hình nginx để chạy được website qua url http://fullname.com  (thay fullname bằng chuỗi ko dấu viết liền tên của bạn)
  - Cấu hình nginx để http://fullname.com/nodered truy cập vào nodered qua cổng 80, (dù nodered đang chạy ở port 1880)
